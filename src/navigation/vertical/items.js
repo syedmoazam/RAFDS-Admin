@@ -1,10 +1,10 @@
-import { Archive, Circle } from 'react-feather'
+import { Gift, Circle } from 'react-feather'
 
 export default [
   {
     id: 'items',
     title: 'Items',
-    icon: <Archive size={20} />,
+    icon: <Gift size={20} />,
     badge: 'light-warning',
     badgeText: '1',
     children: [

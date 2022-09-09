@@ -8,11 +8,13 @@ import dashboards from "./dashboards"
 import items from "./items"
 import uiElements from "./ui-elements"
 import chartsAndMaps from "./charts-maps"
+import inventory from "./inventory"
 
 // ** Merge & Export
 export default [
   ...dashboards,
-  ...items
+  ...items,
+  ...inventory
 //   ...apps,
 //   ...pages,
 //   ...uiElements,
