@@ -5,12 +5,14 @@ import forms from "./forms"
 import tables from "./tables"
 import others from "./others"
 import dashboards from "./dashboards"
+import items from "./items"
 import uiElements from "./ui-elements"
 import chartsAndMaps from "./charts-maps"
 
 // ** Merge & Export
 export default [
-  ...dashboards
+  ...dashboards,
+  ...items
 //   ...apps,
 //   ...pages,
 //   ...uiElements,
