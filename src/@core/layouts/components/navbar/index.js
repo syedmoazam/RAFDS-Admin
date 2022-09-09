@@ -2,11 +2,11 @@
 import { Fragment } from 'react'
 
 // ** Dropdowns Imports
-import IntlDropdown from './IntlDropdown'
-import CartDropdown from './CartDropdown'
+// import IntlDropdown from './IntlDropdown'
+// import CartDropdown from './CartDropdown'
 import UserDropdown from './UserDropdown'
-import NavbarSearch from './NavbarSearch'
-import NotificationDropdown from './NotificationDropdown'
+// import NavbarSearch from './NavbarSearch'
+// import NotificationDropdown from './NotificationDropdown'
 
 // ** Custom Components
 import NavbarBookmarks from './NavbarBookmarks'
@@ -31,18 +31,18 @@ const ThemeNavbar = props => {
   return (
     <Fragment>
       <div className='bookmark-wrapper d-flex align-items-center'>
-        <NavbarBookmarks setMenuVisibility={setMenuVisibility} />
-      </div>
-      <ul className='nav navbar-nav align-items-center ml-auto'>
-        <IntlDropdown />
+        {/* <NavbarBookmarks setMenuVisibility={setMenuVisibility} /> */}
         <NavItem className='d-none d-lg-block'>
           <NavLink className='nav-link-style'>
             <ThemeToggler />
           </NavLink>
         </NavItem>
-        <NavbarSearch />
-        <CartDropdown />
-        <NotificationDropdown />
+      </div>
+      <ul className='nav navbar-nav align-items-center ml-auto'>
+        {/* <IntlDropdown /> */}
+        {/* <NavbarSearch /> */}
+        {/* <CartDropdown /> */}
+        {/* <NotificationDropdown /> */}
         <UserDropdown />
       </ul>
     </Fragment>
