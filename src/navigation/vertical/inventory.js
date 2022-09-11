@@ -10,7 +10,7 @@ export default [
     children: [
       {
         id: 'viewInventory',
-        title: 'View Inventory',
+        title: 'Add / View Inventory',
         icon: <Circle size={12} />,
         navLink: '/inventory/view-inventory'
       }

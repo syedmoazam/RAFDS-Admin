@@ -9,12 +9,14 @@ import items from "./items"
 import uiElements from "./ui-elements"
 import chartsAndMaps from "./charts-maps"
 import inventory from "./inventory"
+import branch from "./branch"
 
 // ** Merge & Export
 export default [
   ...dashboards,
   ...items,
-  ...inventory
+  ...inventory,
+  ...branch
 //   ...apps,
 //   ...pages,
 //   ...uiElements,
