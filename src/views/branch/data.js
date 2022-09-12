@@ -1,4 +1,5 @@
 import { MoreVertical, Edit, FileText, Trash, BookOpen, Archive } from 'react-feather'
+import { Link } from 'react-router-dom'
 import { UncontrolledDropdown, DropdownToggle, DropdownMenu, DropdownItem, Badge } from 'reactstrap'
 
 // const states = ['success', 'danger', 'warning', 'info', 'dark', 'primary', 'secondary']
@@ -8,6 +9,12 @@ const province = {
   kpk: { title: 'KPK', color: 'light-success' },
   punjab: { title: 'Punjab', color: 'light-warning' },
   balochistan: { title: 'Balochistan', color: 'light-info' }
+}
+
+const status = {
+  pending: { title: 'Pending', color: 'light-primary' },
+  accepted: { title: 'Accepted', color: 'light-success' },
+  rejected: { title: 'Rejected', color: 'light-danger' },
 }
 
 export const data = [
@@ -125,11 +132,15 @@ export const multiLingColumns = [
                 </DropdownItem>
                 <DropdownItem>
                   <Archive size={15} />
-                  <span className='align-middle ml-50'>View Inventory</span>
+                  <Link to={`/branch/inventory/${row.id}`}>
+                    <span className='align-middle ml-50'>View Inventory</span>
+                  </Link>
                 </DropdownItem>
                 <DropdownItem>
                   <BookOpen size={15} />
-                  <span className='align-middle ml-50'>Manage</span>
+                  <Link to={`/branch/requests/${row.id}`}>
+                    <span className='align-middle ml-50'>Manage</span>
+                  </Link>
                 </DropdownItem>
               </DropdownMenu>
             </UncontrolledDropdown>
@@ -139,4 +150,141 @@ export const multiLingColumns = [
       }
     }
   ]
-  
+
+export const branchInventoryData = [
+  {
+    id: 1,
+    name: "Wheat",
+    quantity: 50
+  },
+  {
+    id: 2,
+    name: "Rice",
+    quantity: 40
+  },
+  {
+    id: 3,
+    name: "Pulses",
+    quantity: 30
+  },
+  {
+    id: 4,
+    name: "Spice",
+    quantity: 20
+  },
+  {
+    id: 5,
+    name: "Sugar",
+    quantity: 10
+  }
+]
+
+export const branchInventoryColumns = [
+  {
+    name: '#',
+    selector: 'id',
+    sortable: true,
+    maxWidth: '200px'
+  },
+  {
+    name: 'Item Name',
+    selector: 'name',
+    sortable: true,
+    minWidth: '500px'
+  },
+  {
+    name: 'Quantity',
+    selector: 'quantity',
+    sortable: true,
+    minWidth: '200px'
+  }
+]
+
+export const branchInventoryRequestsData = [
+  {
+    id: 1,
+    name: "User 1",
+    email: "abc@xyz.com",
+    cnic: "4220176479833",
+    person: 5,
+    status: "pending"
+  },
+  {
+    id: 2,
+    name: "User 2",
+    email: "abc1@xyz.com",
+    cnic: "4220123456789",
+    person: 8,
+    status: "accepted"
+  },
+  {
+    id: 3,
+    name: "User 3",
+    email: "abc3@xyz.com",
+    cnic: "4220102454217",
+    person: 7,
+    status: "rejected"
+  },
+  {
+    id: 4,
+    name: "User 4",
+    email: "abc4@xyz.com",
+    cnic: "4220134567890",
+    person: 5,
+    status: "accepted"
+  },
+  {
+    id: 5,
+    name: "User 5",
+    email: "abc5@xyz.com",
+    cnic: "4220145678901",
+    person: 2,
+    status: "pending"
+  }
+]
+
+export const branchInventoryRequestsColumns = [
+  {
+    name: '#',
+    selector: 'id',
+    sortable: true,
+    maxWidth: '50px'
+  },
+  {
+    name: 'Full Name',
+    selector: 'name',
+    sortable: true,
+    maxWidth: '200px'
+  },
+  {
+    name: 'Email',
+    selector: 'email',
+    sortable: true,
+    maxWidth: '200px'
+  },
+  {
+    name: 'CNIC No',
+    selector: 'cnic',
+    sortable: true,
+    maxWidth: '200px'
+  },
+  {
+    name: 'No. of Persons',
+    selector: 'person',
+    sortable: true,
+    maxWidth: '350px'
+  },
+  {
+    name: 'Status',
+    selector: 'status',
+    sortable: true,
+    minWidth: '200px',
+    cell: row => {
+      return (
+        <Badge color={status[row.status].color} pill>
+          {status[row.status].title}
+        </Badge>
+      )
+    }
+  }
+]

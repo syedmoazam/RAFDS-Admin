@@ -10,11 +10,13 @@ import uiElements from "./ui-elements"
 import chartsAndMaps from "./charts-maps"
 import inventory from "./inventory"
 import branch from "./branch"
+import _package from "./package"
 
 // ** Merge & Export
 export default [
   ...dashboards,
   ...items,
+  ..._package,
   ...inventory,
   ...branch
 //   ...apps,

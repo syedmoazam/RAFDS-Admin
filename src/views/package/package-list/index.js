@@ -4,22 +4,22 @@ import { Fragment, useState } from 'react'
 
 // ** Third Party Components
 import ReactPaginate from 'react-paginate'
-import { ChevronDown, Share, Printer, FileText, File, Grid, Copy, Plus, Eye } from 'react-feather'
+import { ChevronDown, Share, Printer, FileText, File, Grid, Copy, Plus } from 'react-feather'
 import { FormattedMessage } from 'react-intl'
 import DataTable from 'react-data-table-component'
 import { Card, CardHeader, CardTitle, CardFooter, CardText, Input, Label, Row, Col, UncontrolledButtonDropdown, DropdownToggle, DropdownMenu, DropdownItem, Button } from 'reactstrap'
 
 // ** Custom Components
 import BreadCrumbs from '@components/breadcrumbs'
-// import InventoryModal from '../inventory-modal'
+import PackageModal from '../package-modal'
 
 // ** Table Columns
-import { branchInventoryRequestsData, branchInventoryRequestsColumns } from '../data'
+import { data, multiLingColumns } from '../data'
 
 // ** Styles
 import '@styles/react/libs/tables/react-dataTable-component.scss'
 
-const BranchRequest = () => {
+const PackageList = () => {
   const [currentPage, setCurrentPage] = useState(0)
   const [searchValue, setSearchValue] = useState('')
   const [filteredData, setFilteredData] = useState([])
@@ -37,23 +37,16 @@ const BranchRequest = () => {
     setSearchValue(value)
 
     if (value.length) {
-      updatedData = branchInventoryRequestsData.filter(item => {
+      updatedData = data.filter(item => {
         const startsWith =
           item.id.toString().startsWith(value) ||
           item.name.toLowerCase().startsWith(value.toLowerCase()) ||
-          item.email.startsWith(value) ||
-          item.cnic.startsWith(value) ||
-          item.person.toString().startsWith(value) ||
-          item.status.startsWith(value)
+          item.person.toString().startsWith(value)
 
         const includes =
           item.id.toString().includes(value) ||
-          item.name.toLowerCase().includes(value.toLowerCase())
-          item.email.includes(value) ||
-          item.cnic.includes(value) ||
-          item.person.toString().includes(value) ||
-          item.status.includes(value)
-          
+          item.name.toLowerCase().includes(value.toLowerCase()) ||
+          item.person.toString().includes(value)
         if (startsWith) {
           return startsWith
         } else if (!startsWith && includes) {
@@ -71,7 +64,7 @@ const BranchRequest = () => {
 
     const columnDelimiter = ','
     const lineDelimiter = '\n'
-    const keys = Object.keys(branchInventoryRequestsData[0])
+    const keys = Object.keys(data[0])
 
     result = ''
     result += keys.join(columnDelimiter)
@@ -141,7 +134,7 @@ const BranchRequest = () => {
       nextLabel={<Next size={15} />}
       forcePage={currentPage}
       onPageChange={page => handlePagination(page)}
-      pageCount={searchValue.length ? filteredData.length / 7 : branchInventoryRequestsData.length / 7 || 1}
+      pageCount={searchValue.length ? filteredData.length / 7 : data.length / 7 || 1}
       breakLabel={'...'}
       pageRangeDisplayed={2}
       marginPagesDisplayed={2}
@@ -161,13 +154,47 @@ const BranchRequest = () => {
   return (
     <Fragment>
       <BreadCrumbs
-        breadCrumbTitle="View Requests"
-        breadCrumbParent="Branch"
-        breadCrumbActive="View Branch Inventory"
+        breadCrumbTitle="Package"
+        breadCrumbParent="Packages"
+        breadCrumbActive="Add / View Packages"
       />
       <Card>
         <CardHeader className='border-bottom justify-content-between'>
-          <CardTitle tag='h4'>Inventory Requests</CardTitle>
+          <CardTitle tag='h4'>View Packages</CardTitle>
+          <div className='d-flex mt-md-0 mt-1'>
+            <UncontrolledButtonDropdown>
+              <DropdownToggle color='secondary' caret outline>
+                <Share size={15} />
+                <span className='align-middle ml-50'>Export</span>
+              </DropdownToggle>
+              <DropdownMenu right>
+                <DropdownItem className='w-100'>
+                  <Printer size={15} />
+                  <span className='align-middle ml-50'>Print</span>
+                </DropdownItem>
+                <DropdownItem className='w-100' onClick={() => downloadCSV(data)}>
+                  <FileText size={15} />
+                  <span className='align-middle ml-50'>CSV</span>
+                </DropdownItem>
+                <DropdownItem className='w-100'>
+                  <Grid size={15} />
+                  <span className='align-middle ml-50'>Excel</span>
+                </DropdownItem>
+                <DropdownItem className='w-100'>
+                  <File size={15} />
+                  <span className='align-middle ml-50'>PDF</span>
+                </DropdownItem>
+                <DropdownItem className='w-100'>
+                  <Copy size={15} />
+                  <span className='align-middle ml-50'>Copy</span>
+                </DropdownItem>
+              </DropdownMenu>
+            </UncontrolledButtonDropdown>
+            <Button className='ml-2' color='primary' onClick={handleModal}>
+              <Plus size={15} />
+              <span className='align-middle ml-50'>Add Package</span>
+            </Button>
+          </div>
         </CardHeader>
         <Row className='justify-content-end mx-0'>
           <Col className='d-flex align-items-center justify-content-end mt-1' md='6' sm='12'>
@@ -188,18 +215,18 @@ const BranchRequest = () => {
           noHeader
           pagination
           selectableRowsNoSelectAll
-          columns={branchInventoryRequestsColumns}
+          columns={multiLingColumns}
           className='react-dataTable'
           paginationPerPage={7}
           sortIcon={<ChevronDown size={10} />}
           paginationDefaultPage={currentPage + 1}
           paginationComponent={CustomPagination}
-          data={searchValue.length ? filteredData : branchInventoryRequestsData}
+          data={searchValue.length ? filteredData : data}
         />
       </Card>
-      {/* <InventoryModal open={modal} handleModal={handleModal} /> */}
+      <PackageModal open={modal} handleModal={handleModal} />
     </Fragment>
   )
 }
 
-export default BranchRequest
+export default PackageList

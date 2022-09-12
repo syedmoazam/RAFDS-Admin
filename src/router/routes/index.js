@@ -11,6 +11,7 @@ import PageLayoutsRoutes from './PageLayouts'
 import ItemRoutes from './Items'
 import InventoryRoutes from './Inventory'
 import BranchRoutes from './Branch'
+import PackageRoutes from './Package'
 
 // ** Document title
 const TemplateTitle = '%s - Vuexy React Admin Template'
@@ -31,7 +32,8 @@ const Routes = [
   ...ChartMapsRoutes,
   ...ItemRoutes,
   ...InventoryRoutes,
-  ...BranchRoutes
+  ...BranchRoutes,
+  ...PackageRoutes
 ]
 
 export { DefaultRoute, TemplateTitle, Routes }
