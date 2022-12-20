@@ -20,6 +20,8 @@ import {
 
 import Avatar from "@components/avatar"
 import Breadcrumbs from "@components/breadcrumbs"
+import axios from "axios";
+import environment from "../../environment";
 
 const SuccessToast = ({ data }) => {
   return (
@@ -52,7 +54,12 @@ const AddItem = () => {
   })
 
   const onSubmit = (data) => {
-    toast.success(<SuccessToast data={data} />, { hideProgressBar: true })
+    axios.post(environment.SERVER_BASE_URL + '/admin/item/create', { name: data.name }).then((res) => {
+      toast.success(<SuccessToast data={data} />, { hideProgressBar: true })
+    }).catch((error) => {
+      console.log(error);
+      toast.error('Something Went Wrong');
+    })
   }
   return (
     <Fragment>

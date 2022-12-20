@@ -25,7 +25,7 @@ import {
 // ** Custom Components
 import BreadCrumbs from '@components/breadcrumbs'
 // ** Table Columns
-import {branchInventoryRequestsData, branchInventoryRequestsColumns} from '../data'
+import {branchInventoryRequestsData, branchInventoryRequestsColumns} from '../../branch/data'
 
 // ** Styles
 import '@styles/react/libs/tables/react-dataTable-component.scss'
@@ -42,7 +42,7 @@ const statusOptions = [
     { label: 'Rejected', value: 'Rejected' },
 ]
 
-const BranchRequest = () => {
+const DonateRequest = () => {
     const [currentPage, setCurrentPage] = useState(0)
     const [searchValue, setSearchValue] = useState('')
     const [filteredData, setFilteredData] = useState([])
@@ -340,4 +340,4 @@ const BranchRequest = () => {
     )
 }
 
-export default BranchRequest
+export default DonateRequest
